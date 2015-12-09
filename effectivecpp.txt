@@ -312,5 +312,8 @@ Effective C++
 	Class的设计就是type的设计，在定义一个新type之前，要确定已经考虑上面的问题。
 
 20. 宁以pass-by-reference-to-const替换pass-by-value
-	缺省情况下C++以by value方式传递对象至函数。但by value的方式必须调用复制构造函数	
-	
+	缺省情况下C++以by value方式传递对象至函数。但by value的方式必须调用复制构造函数从而效率上不高，同时如果一个多态的类，通过by value传递参数到一个用其父类作为参数类型的函数将会被切割，失去多态的效果。
+
+记住：
+	尽量用pass-by-reference-to-const替换pass-by-value。前者通常比较搞笑同时可以避免切割问题(slicing problem).
+	以上规则并不使用于内置类型，以及STL的迭代其和函数对象，对它们而言，pass-by-value往往比较适当。
